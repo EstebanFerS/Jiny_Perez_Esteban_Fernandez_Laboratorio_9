@@ -9,12 +9,19 @@ package lab_9;
  * @author esteb
  */
 public class Main extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Main
-     */
+    
+    private JTunes jtunes;
     public Main() {
         initComponents();
+        this.jtunes = new JTunes(1000);
+    }
+    
+    public JTunes getJTunes() {
+        return this.jtunes;
+    }
+    
+    public void setJTunes(JTunes jtunes) {
+        this.jtunes = jtunes;
     }
 
     /**
@@ -116,21 +123,21 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarMusicaActionPerformed
-        AgregarCancion agregar = new AgregarCancion();
+        AgregarCancion agregar = new AgregarCancion(this.jtunes);
         agregar.setVisible(true);
         agregar.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnAgregarMusicaActionPerformed
 
     private void btnCalificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalificarActionPerformed
-        Calificar calificar = new Calificar();
+        Calificar calificar = new Calificar(this.jtunes);
         calificar.setVisible(true);
         calificar.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnCalificarActionPerformed
 
     private void btnVerListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerListaActionPerformed
-        VerLista ver = new VerLista();
+        VerLista ver = new VerLista(this.jtunes);
         ver.setVisible(true);
         ver.setLocationRelativeTo(null);
         this.dispose();

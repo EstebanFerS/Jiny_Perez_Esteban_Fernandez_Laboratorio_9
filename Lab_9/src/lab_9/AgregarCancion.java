@@ -13,16 +13,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author marye
- */ 
+ */
 public class AgregarCancion extends javax.swing.JFrame {
 
-    private JTunes reproductor;
+    private JTunes jtunes;
     private ImageIcon imagenSeleccionada;
-    
-    public AgregarCancion(){
+
+    public AgregarCancion(JTunes jtunes) {
         initComponents();
-        reproductor = new JTunes(1000); 
+        this.jtunes = jtunes;
     }
+
+    public AgregarCancion() {
+        initComponents();
+        jtunes = new JTunes(1000);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -220,7 +226,7 @@ public class AgregarCancion extends javax.swing.JFrame {
                 return;
             }
 
-            boolean agregada = reproductor.addSong(codigo, nombre, precio, imagenSeleccionada);
+            boolean agregada = jtunes.addSong(codigo, nombre, precio, imagenSeleccionada);
 
             if (agregada) {
                 JOptionPane.showMessageDialog(this, "¡Canción agregada exitosamente!",
@@ -278,6 +284,7 @@ public class AgregarCancion extends javax.swing.JFrame {
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         Main main = new Main();
+        main.setJTunes(this.jtunes);
         main.setVisible(true);
         main.setLocationRelativeTo(null);
         this.dispose();
