@@ -8,13 +8,10 @@ package lab_9;
  *
  * @author esteb
  */
-public class Lab_9 {
+public class MainJtunes {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
     }
     
 }
