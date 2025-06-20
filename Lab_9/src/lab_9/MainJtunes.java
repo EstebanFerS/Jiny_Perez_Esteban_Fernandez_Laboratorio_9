@@ -11,7 +11,9 @@ package lab_9;
 public class MainJtunes {
 
     public static void main(String[] args) {
-        
+        Main main = new Main();
+        main.setVisible(true);
+        main.setLocationRelativeTo(null);
     }
     
 }
