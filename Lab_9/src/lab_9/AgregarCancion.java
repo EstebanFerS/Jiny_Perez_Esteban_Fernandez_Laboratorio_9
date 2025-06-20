@@ -18,10 +18,11 @@ public class AgregarCancion extends javax.swing.JFrame {
 
     private JTunes reproductor;
     private ImageIcon imagenSeleccionada;
-
-    /**
-     * Creates new form AgregarCancion
-     */
+    
+    public AgregarCancion(){
+        initComponents();
+        reproductor = new JTunes(1000); 
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +45,7 @@ public class AgregarCancion extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,6 +93,11 @@ public class AgregarCancion extends javax.swing.JFrame {
         btnVolver.setFont(new java.awt.Font("Constantia", 0, 18)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -260,6 +267,13 @@ public class AgregarCancion extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnImagenActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        Main main = new Main();
+        main.setVisible(true);
+        main.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void limpiarCampos() {
         txtCodigo.setText("");
