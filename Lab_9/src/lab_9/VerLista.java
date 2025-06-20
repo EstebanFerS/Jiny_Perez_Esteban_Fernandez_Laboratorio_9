@@ -3,46 +3,44 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package lab_9;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class VerLista extends javax.swing.JFrame {
 
-     public class Song extends JPanel {
-        public Song(int codigo, String nombre, double precio, double rating, ImageIcon imagen) {
-            setLayout(new BorderLayout(10, 10));
-            setBorder(BorderFactory.createLineBorder(Color.GRAY, 1));
-            setBackground(Color.WHITE);
+    private JTunes reproductor;
+    private int indiceActual = 0;
 
-            Image imgAEscalar = imagen.getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH);
-            JLabel lblImagen = new JLabel(new ImageIcon(imgAEscalar));
-            lblImagen.setHorizontalAlignment(SwingConstants.CENTER);
+    public VerLista() {
 
-            JLabel lblCodigo = new JLabel("Código: " + codigo);
-            JLabel lblNombre = new JLabel("Nombre: " + nombre);
-            JLabel lblPrecio = new JLabel("Precio: $" + precio);
-            JLabel lblRating = new JLabel("Rating: " + String.format("%.1f", rating) + " ★");
-
-            JPanel panelInfo = new JPanel();
-            panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
-            panelInfo.setBackground(Color.WHITE);
-            panelInfo.add(lblCodigo);
-            panelInfo.add(lblNombre);
-            panelInfo.add(lblPrecio);
-            panelInfo.add(lblRating);
-
-            add(lblImagen, BorderLayout.WEST);
-            add(panelInfo, BorderLayout.CENTER);
+        initComponents();
+    }
+    
+   public VerLista(JTunes reproductor) {
+        initComponents();
+        this.reproductor = reproductor;
+        Song[] canciones = reproductor.getAllSongs();
+        if (canciones.length > 0) {
+            mostrarCancion(canciones[indiceActual]);
         }
     }
 
-    private JPanel panelCanciones;
+    public void mostrarCancion(Song cancion) {
+        if (cancion.getImagenDisco() != null) {
+            Image img = cancion.getImagenDisco().getImage().getScaledInstance(lblImagen.getWidth(), lblImagen.getHeight(), Image.SCALE_SMOOTH);
+            lblImagen.setIcon(new ImageIcon(img));
+        } else {
+            lblImagen.setText("Sin imagen");
+            lblImagen.setIcon(null);
+        }
 
-    public VerLista() {
-        initComponents();
+        lblCodigo.setText("Código: " + cancion.getCodigo());
+        lblNombre.setText("Nombre: " + cancion.getNombre());
+        lblPrecio.setText(String.format("Precio: L. %.2f", cancion.getPrecio()));
+        lblRating.setText(String.format("Rating: %.1f estrellas", cancion.songRating()));
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,7 +111,6 @@ public class VerLista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-  
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
