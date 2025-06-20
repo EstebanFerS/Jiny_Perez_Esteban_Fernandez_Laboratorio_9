@@ -22,30 +22,6 @@ public class AgregarCancion extends javax.swing.JFrame {
     /**
      * Creates new form AgregarCancion
      */
-    public AgregarCancion() {
-        initComponents();
-        reproductor = new JTunes(100);
-        imagenSeleccionada = null;
-
-        jFileChooser2.setVisible(false);
-
-        FileNameExtensionFilter filtroImagenes = new FileNameExtensionFilter(
-                "Imágenes (*.jpg, *.jpeg, *.png, *.gif)", "jpg", "jpeg", "png", "gif");
-        jFileChooser2.setFileFilter(filtroImagenes);
-    }
-
-    public AgregarCancion(JTunes tiendaExistente) {
-        initComponents();
-        this.reproductor = tiendaExistente;
-        imagenSeleccionada = null;
-
-        jFileChooser2.setVisible(false);
-
-        FileNameExtensionFilter filtroImagenes = new FileNameExtensionFilter(
-                "Imágenes (*.jpg, *.jpeg, *.png, *.gif)", "jpg", "jpeg", "png", "gif");
-        jFileChooser2.setFileFilter(filtroImagenes);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,7 +31,6 @@ public class AgregarCancion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser2 = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         txtCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -186,20 +161,10 @@ public class AgregarCancion extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(195, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(121, 121, 121)
-                    .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(91, Short.MAX_VALUE)))
         );
 
         pack();
@@ -228,7 +193,6 @@ public class AgregarCancion extends javax.swing.JFrame {
                 txtPrecio.requestFocus();
                 return;
             }
-
 
             int codigo = Integer.parseInt(txtCodigo.getText().trim());
             String nombre = txtNombre.getText().trim();
@@ -262,10 +226,17 @@ public class AgregarCancion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
-        int resultado = jFileChooser2.showOpenDialog(this);
+
+        JFileChooser fileChooser = new JFileChooser();
+
+        FileNameExtensionFilter filtroImagenes = new FileNameExtensionFilter(
+                "Imágenes (*.jpg, *.jpeg, *.png, *.gif)", "jpg", "jpeg", "png", "gif");
+        fileChooser.setFileFilter(filtroImagenes);
+
+        int resultado = fileChooser.showOpenDialog(this);
 
         if (resultado == JFileChooser.APPROVE_OPTION) {
-            File archivo = jFileChooser2.getSelectedFile();
+            File archivo = fileChooser.getSelectedFile();
 
             try {
                 imagenSeleccionada = new ImageIcon(archivo.getAbsolutePath());
@@ -297,7 +268,6 @@ public class AgregarCancion extends javax.swing.JFrame {
         imagenSeleccionada = null;
         btnImagen.setText("Seleccionar una imagen");
     }
-
 
     /**
      * @param args the command line arguments
@@ -338,7 +308,6 @@ public class AgregarCancion extends javax.swing.JFrame {
     private javax.swing.JToggleButton btnAgregar;
     private javax.swing.JButton btnImagen;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
